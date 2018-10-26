@@ -1,10 +1,11 @@
 class Change
   def self.generate(coins, amount)
     number_of_coins = []
+    coins.reverse!
     coins.each { |coin|
-      number_of_coins << amount / coin
-      amount -= amount / coin
+      (1..amount/coin).each{ |_x| number_of_coins << coin }
+      amount = amount%coin
     }
-    number_of_coins
+    number_of_coins.reverse
   end
 end

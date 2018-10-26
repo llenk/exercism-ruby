@@ -1,10 +1,12 @@
 class Raindrops
   def self.convert(num)
-    return_value = ''
-    return_value << 'Pling' if num%3 == 0
-    return_value << 'Plang' if num%5 == 0
-    return_value << 'Plong' if num%7 == 0
-    return_value << num.to_s if return_value.empty?
-    return_value
+    rain_sounds = {
+      3 => 'Pling',
+      5 => 'Plang',
+      7 => 'Plong',
+    }
+
+    applicable_rain_sounds = rain_sounds.select { |key, val| num%key == 0 }
+    applicable_rain_sounds.empty? ? num.to_s : applicable_rain_sounds.values.join
   end
 end
