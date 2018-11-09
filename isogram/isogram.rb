@@ -1,5 +1,6 @@
 class Isogram
   def self.isogram?(word) 
-    word.downcase.scan(/\w/).group_by(&:itself).values.select{ |group| group.size > 1 }.empty?
+    characters = word.downcase.scan(/\w/)
+    characters == characters.uniq
   end
 end
