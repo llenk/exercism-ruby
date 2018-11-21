@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative 'word_count'
 
-# Common test data version: 1.0.0 cd26d49
+# Common test data version: 1.2.0 77623ec
 class WordCountTest < Minitest::Test
   def test_count_one_word
     phrase = Phrase.new("word")
@@ -60,6 +60,12 @@ class WordCountTest < Minitest::Test
   def test_with_quotations
     phrase = Phrase.new("Joe can't tell between 'large' and large.")
     counts = {"joe"=>1, "can't"=>1, "tell"=>1, "between"=>1, "large"=>2, "and"=>1}
+    assert_equal counts, phrase.word_count
+  end
+
+  def test_multiple_spaces_not_detected_as_a_word
+    phrase = Phrase.new(" multiple   whitespaces")
+    counts = {"multiple"=>1, "whitespaces"=>1}
     assert_equal counts, phrase.word_count
   end
 end
