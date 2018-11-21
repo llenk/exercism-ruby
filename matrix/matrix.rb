@@ -9,10 +9,6 @@ class Matrix
   end
 
   def columns
-    self
-  end
-
-  def [](index)
-    @matrix.map{ |row| row[index] }
+    @matrix.transpose
   end
 end
