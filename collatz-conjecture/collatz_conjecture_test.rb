@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative 'collatz_conjecture'
 
-# Common test data version: 1.1.1 25c4479
+# Common test data version: 1.2.1 d94e348
 class CollatzConjectureTest < Minitest::Test
   def test_zero_steps_for_one
     assert_equal 0, CollatzConjecture.steps(1)
@@ -20,10 +20,14 @@ class CollatzConjectureTest < Minitest::Test
   end
 
   def test_zero_is_an_error
-    assert_raises(ArgumentError) { CollatzConjecture.steps(0) }
+    assert_raises(ArgumentError) do
+      CollatzConjecture.steps(0)
+    end
   end
 
   def test_negative_value_is_an_error
-    assert_raises(ArgumentError) { CollatzConjecture.steps(-15) }
+    assert_raises(ArgumentError) do
+      CollatzConjecture.steps(-15)
+    end
   end
 end
