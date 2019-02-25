@@ -1,15 +1,19 @@
 class Bob
-    def self.hey(remark)
-        remark.strip!
-        if remark.length == 0
-            return 'Fine. Be that way!'
-        elsif remark[-1..-1] == '?' && remark == remark.upcase && remark != remark.downcase
-            return 'Calm down, I know what I\'m doing!'
-        elsif remark == remark.upcase && remark != remark.downcase
-            return 'Whoa, chill out!'
-        elsif remark[-1..-1] == '?'
-            return 'Sure.'
-        end
-        return 'Whatever.'
-    end
+  def self.hey(remark)
+    remark.strip!
+    response = 'Whatever.'
+    response = 'Fine. Be that way!' if remark.length.zero?
+    response = 'Whoa, chill out!' if is_yelling?(remark)
+    response = 'Sure.' if is_question?(remark)
+    response = "Calm down, I know what I'm doing!" if is_question?(remark) && is_yelling?(remark)
+    response
+  end
+
+  def self.is_question?(remark)
+    remark[-1..-1] == '?'
+  end
+
+  def self.is_yelling?(remark)
+    remark == remark.upcase && remark != remark.downcase
+  end
 end

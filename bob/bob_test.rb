@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative 'bob'
 
-# Common test data version: 1.2.0 6dc2014
+# Common test data version: 1.4.0 ca79943
 class BobTest < Minitest::Test
   def test_stating_something
     remark = "Tom-ay-to, tom-aaaah-to."
@@ -53,12 +53,12 @@ class BobTest < Minitest::Test
     assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "1, 2, 3 GO!", and..}
   end
 
-  def test_only_numbers
+  def test_no_letters
     remark = "1, 2, 3"
     assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "1, 2, 3", and..}
   end
 
-  def test_question_with_only_numbers
+  def test_question_with_no_letters
     remark = "4?"
     assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "4?", and..}
   end
@@ -69,8 +69,8 @@ class BobTest < Minitest::Test
   end
 
   def test_shouting_with_no_exclamation_mark
-    remark = "I HATE YOU"
-    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "I HATE YOU", and..}
+    remark = "I HATE THE DMV"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "I HATE THE DMV", and..}
   end
 
   def test_statement_containing_question_mark
@@ -104,8 +104,8 @@ class BobTest < Minitest::Test
   end
 
   def test_multiple_line_question
-    remark = "\nDoes this cryogenic chamber make me look fat?\nno"
-    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "\nDoes this cryogenic chamber make me look fat?\nno", and..}
+    remark = "\nDoes this cryogenic chamber make me look fat?\nNo."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "\nDoes this cryogenic chamber make me look fat?\nNo.", and..}
   end
 
   def test_starting_with_whitespace
