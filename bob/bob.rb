@@ -1,6 +1,11 @@
 class Bob
   def self.hey(remark)
-    remark.strip!
+    response(remark.strip)
+  end
+
+  private
+
+  def self.response(remark)
     if silence?(remark)
       'Fine. Be that way!'
     elsif is_question?(remark) && is_yelling?(remark)
