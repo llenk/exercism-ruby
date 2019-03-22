@@ -1,23 +1,13 @@
 class Phrase
-    def initialize(phrase)
-        @phrase = phrase.split(/[^a-zA-Z0-9']/)
+  def initialize(phrase)
+    @phrase = phrase.scan(/\b[\w']+\b/)
+  end
+  def word_count
+    words = {}
+    @phrase.each do |word|
+      word.downcase!
+      words[word] = words[word] ? words[word] + 1 : 1
     end
-    def word_count
-        words = {}
-        for word in @phrase
-            if word.length > 0
-                word.downcase!
-                word.chomp!("'")
-                word.reverse!
-                word.chomp!("'")
-                word.reverse!
-                if (!words[word] && word.length > 0)
-                    words[word] = 1
-                elsif word.length > 0
-                    words[word] += 1
-                end
-            end
-        end
-        return words
-    end
+    words
+  end
 end
