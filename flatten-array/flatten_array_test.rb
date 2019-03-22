@@ -13,6 +13,11 @@ class FlattenArrayTest < Minitest::Test
     assert_equal [1, 2, 3, 4, 5, 6, 7, 8], flat_array
   end
 
+  def test_removes_nil_values
+    flat_array = FlattenArray.flatten([nil, 1, 2, nil, 3, nil, 4])
+    assert_equal [1, 2, 3, 4], flat_array
+  end
+
   def test_5_level_nesting
     flat_array = FlattenArray.flatten([0, 2, [[2, 3], 8, 100, 4, [[[50]]]], -2])
     assert_equal [0, 2, 2, 3, 8, 100, 4, 50, -2], flat_array

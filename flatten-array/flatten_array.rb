@@ -1,13 +1,13 @@
 class FlattenArray
   def self.flatten(array)
-    remove_nils(flatten_recursive(array))
+    flatten_recursive(array).compact
   end
 
   def self.flatten_recursive(array)
-    array.map { |element| element.is_a?(Array) ? flatten_recursive(element) : element }.flatten
-  end
-
-  def self.remove_nils(array)
-    array.select { |element| element }
+    new_array = []
+    array.each do |element|
+      element.is_a?(Array) ? new_array += self.flatten_recursive(element) : new_array << element
+    end
+    new_array
   end
 end
