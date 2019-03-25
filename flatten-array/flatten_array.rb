@@ -4,10 +4,12 @@ class FlattenArray
   end
 
   def self.flatten_recursive(array)
-    new_array = []
-    array.each do |element|
-      element.is_a?(Array) ? new_array += self.flatten_recursive(element) : new_array << element
+    array.each_with_object([]) do |element, new_array|
+      if element.is_a?(Array)
+        new_array.concat(self.flatten_recursive(element))
+      else
+        new_array << element
+      end
     end
-    new_array
   end
 end
